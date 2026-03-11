@@ -31,14 +31,14 @@ def load_config():
 CONFIG = load_config()
 
 # 飞书配置
-FEISHU_USER_ID = os.environ.get("FEISHU_USER_ID", CONFIG.get("FEISHU_USER_ID", "ou_385eb38d334f82a901667e2c81ccdc5c"))
+FEISHU_USER_ID = os.environ.get("FEISHU_USER_ID", CONFIG.get("FEISHU_USER_ID", ""))
 ENABLE_FEISHU = os.environ.get("ENABLE_FEISHU", CONFIG.get("ENABLE_FEISHU", "false")).lower() == "true"
 
 # Git 推送配置
 ENABLE_GIT = os.environ.get("ENABLE_GIT", CONFIG.get("ENABLE_GIT", "false")).lower() == "true"
 
 # 路径配置
-WORKSPACE = Path("/Users/mymac/.openclaw/workspace")
+WORKSPACE = Path.home() / ".openclaw" / "workspace"
 DATA_DIR = WORKSPACE / "data" / "daily-reports"
 
 # ============ 核心函数 ============

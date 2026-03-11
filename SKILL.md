@@ -19,7 +19,7 @@ python3 /Users/mymac/.openclaw/workspace/skills/daily-report/scripts/daily_repor
 
 ```bash
 # 飞书推送（默认开启）
-FEISHU_USER_ID=ou_385eb38d334f82a901667e2c81ccdc5c
+FEISHU_USER_ID=
 ENABLE_FEISHU=true
 
 # Git 推送（默认关闭）
@@ -30,6 +30,14 @@ ENABLE_GIT=false
 # ANTHROPIC_API_KEY=
 # OPENAI_API_KEY=
 ```
+
+### 获取飞书用户 ID
+
+1. 打开飞书网页版 https://www.feishu.cn
+2. F12 打开开发者工具 → Network
+3. 发送任意消息
+4. 在请求中查找 `open_id` 或 `user_id`
+5. 将 ID 填入 `config.env` 的 `FEISHU_USER_ID`
 
 运行前加载配置：
 ```bash
