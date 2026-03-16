@@ -50,9 +50,9 @@ def get_api_config():
     """自动检测可用的 API 配置"""
     # 优先级: MiniMax > Anthropic > OpenAI
     
-    # MiniMax (兼容旧配置)
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "") or os.environ.get("MINIMAX_API_KEY", "")
-    api_url = os.environ.get("ANTHROPIC_API_URL", "") or os.environ.get("MINIMAX_API_URL", "")
+    # MiniMax (使用 MiniMax API)
+    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+    api_url = os.environ.get("ANTHROPIC_API_URL", "https://api.minimaxi.com")
     if api_key and "minimax" in api_url.lower():
         return {
             "provider": "minimax",
