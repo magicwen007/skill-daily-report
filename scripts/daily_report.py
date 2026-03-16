@@ -11,6 +11,27 @@ import subprocess
 from datetime import datetime, timedelta
 from pathlib import Path
 
+# ============ 加载环境变量 ============
+def load_env_from_shell():
+    """从 ~/.zshrc 加载环境变量"""
+    zshrc = Path.home() / ".zshrc"
+    if zshrc.exists():
+        with open(zshrc) as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith("export ") and "=" in line:
+                    # 去掉 "export " 前缀
+                    line = line[7:]
+                    if "=" in line:
+                        key, val = line.split("=", 1)
+                        key = key.strip()
+                        val = val.strip().strip('"').strip("'")
+                        if key and val and key not in os.environ:
+                            os.environ[key] = val
+
+# 启动时加载环境变量
+load_env_from_shell()
+
 # ============ 配置区域 ============
 SCRIPT_DIR = Path(__file__).parent
 CONFIG_FILE = SCRIPT_DIR / "config.env"
